@@ -20,12 +20,11 @@ namespace Crud_Operations.Controllers
         {
             try
             {
-                var stdList = from a in _Db.tb1_Student
-                              join b in _Db.tb1_Departments
-                              on a.DepID equals b.ID
+                var stdList = from a in _Db.tbl_Student
+                              join b in _Db.tbl_Departments
+                              on a.DeptID equals b.ID
                               into Dep
                               from b in Dep.DefaultIfEmpty()
-
 
                               select new Student
                               {
@@ -35,15 +34,13 @@ namespace Crud_Operations.Controllers
                                   Mobile = a.Mobile,
                                   Email = a.Email,
                                   Description = a.Description,
-                                  DepID = a.DepID,
-
-                                  Department = b == null ? "" : b.Department,
+                                  DeptID = a.DeptID,
+                                  Department = b == null ? string.Empty : b.Department,
                               };
 
-
                 return View(stdList);
-
-            }catch(Exception ex)
+            }
+            catch (Exception)
             {
                 return View();
             }
