@@ -37,7 +37,7 @@ namespace Crud_Operations.Controllers
                                   Description = a.Description,
                                   DepID = a.DepID,
 
-                                  Department = b == null ? "" : b.Department,
+                                  Department =b==null?"":b.Department,
                               };
 
 
