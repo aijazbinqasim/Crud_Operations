@@ -6,8 +6,6 @@ namespace Crud_Operations.Models
     {
         [Key]
         public int ID { get; set; }
-
-
         public string Department { get; set; }
     }
 }

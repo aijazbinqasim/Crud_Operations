@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 namespace Crud_Operations.Models
 {
     public class StudentContext : DbContext
@@ -11,8 +12,7 @@ namespace Crud_Operations.Models
 
         }
 
-        public DbSet<Student> tb1_Student { get; set; }
-
-        public DbSet<Departments> tb1_Departments { get; set; }
+        public DbSet<Student> tbl_Student { get; set; }
+        public DbSet<Departments> tbl_Departments { get; set; }
     }
 }

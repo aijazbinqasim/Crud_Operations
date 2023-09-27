@@ -25,7 +25,7 @@ namespace Crud_Operations
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuartion.GetConnectionString("AppCon")));
+            services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuartion.GetConnectionString("DbConn")));
         }
 
         public void Configure(IApplicationBuilder app, Microsoft.AspNetCore.Hosting.IHostingEnvironment env)
@@ -48,11 +48,7 @@ namespace Crud_Operations
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Student}/{action=StudentList}/{id?}");
-
-
             });
-
-
         }
     }
 }
