@@ -22,7 +22,7 @@ namespace Crud_Operations.Models
 
         [Required(ErrorMessage = "Required")]
         [Display(Name = "Department")]
-        public int DepID { get; set; }
+        public int DeptID { get; set; }
 
         [Required(ErrorMessage = "Required")]
         public string Mobile { get; set; }
