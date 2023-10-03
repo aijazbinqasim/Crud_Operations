@@ -1,6 +1,6 @@
 namespace Crud_Operations
 {
-    public class program
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -13,13 +13,5 @@ namespace Crud_Operations
             {
                 webBuilder.UseStartup<Startup>();
             });
-            
-            
-           
     }
 }
-
-
-
-
-

@@ -67,10 +67,11 @@ namespace Crud_Operations.Controllers
                         _Db.tbl_Student.Add(obj);
                         await _Db.SaveChangesAsync();
                     }
-
                     return RedirectToAction("StudentList");
+
                 }
-                return View();
+                 return View();
+              
 
             }
             catch (Exception)
