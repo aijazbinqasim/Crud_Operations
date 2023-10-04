@@ -13,6 +13,9 @@
 <table class="table">
     <thead>
         <tr>
+
+            <th>Action</th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Name)
             </th>
@@ -37,7 +40,6 @@
                 @Html.DisplayNameFor(model => model.Description)
             </th>
 
-            <th></th>
         </tr>
     </thead>
 
@@ -46,6 +48,12 @@
         {
 
             <tr>
+                <td>
+                    @Html.ActionLink("Edit", "Create", new {  id=item.ID,item.Name,item.Fname,item.Email,item.Mobile,item.Description,item.DeptID  }, new {@class="btn btn-success"}) |
+                    @Html.ActionLink("Delete", "DeleteStd", new {  id=item.ID  },new {@class="btn btn-danger"})
+                </td>
+
+
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
@@ -70,10 +78,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
+               
             </tr>
         }
     </tbody>

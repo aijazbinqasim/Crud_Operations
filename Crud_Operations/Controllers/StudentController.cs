@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Crud_Operations.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Crud_Operations.Controllers
 {
@@ -49,10 +50,10 @@ namespace Crud_Operations.Controllers
 
 
 
-        public IActionResult Create()
+        public IActionResult Create(Student obj)
         {
             loadDDL();
-            return View();
+            return View(obj);
         }
 
         [HttpPost]
@@ -67,6 +68,11 @@ namespace Crud_Operations.Controllers
                         _Db.tbl_Student.Add(obj);
                         await _Db.SaveChangesAsync();
                     }
+                    else
+                    {
+                        _Db.Entry(obj).State = EntityState.Modified;
+                        await _Db.SaveChangesAsync();
+                    }
                     return RedirectToAction("StudentList");
 
                 }
@@ -74,7 +80,28 @@ namespace Crud_Operations.Controllers
               
 
             }
-            catch (Exception)
+            catch (Exception ex)
+            {
+                return RedirectToAction("StudentList");
+            }
+        }
+
+
+        public async Task<IActionResult> DeleteStd(int id)
+        {
+            try
+            {
+                var std = await _Db.tbl_Student.FindAsync(id);
+                if (std!=null)
+                {
+                    _Db.tbl_Student.Remove(std);
+                 await   _Db.SaveChangesAsync();
+                }
+
+                return RedirectToAction("StudentList");
+
+            }
+            catch(Exception ex)
             {
                 return RedirectToAction("StudentList");
             }
