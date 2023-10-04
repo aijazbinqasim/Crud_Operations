@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<Crud_Operations.Models.Student>
 
 @{
-    ViewData["Title"] = "StudentList";
+    ViewData["Title"] = "Student List";
 }
 
-<h1>StudentList</h1>
+<h1>Student List</h1>
 
 <p class="float-right">
     <a asp-action="Create" class="btn btn-outline-primary">Add New</a>
@@ -13,7 +13,6 @@
 <table class="table">
     <thead>
         <tr>
-
             <th>Action</th>
 
             <th>
@@ -39,46 +38,52 @@
             <th>
                 @Html.DisplayNameFor(model => model.Description)
             </th>
-
         </tr>
     </thead>
 
     <tbody>
-        @foreach (var item in Model)
+        @if (Model.Any())
         {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Edit", "Create", new {  id=item.ID,item.Name,item.Fname,item.Email,item.Mobile,item.Description,item.DeptID  }, new {@class="btn btn-success"}) |
+                        @Html.ActionLink("Delete", "DeleteStd", new {  id=item.ID  },new {@class="btn btn-danger"})
+                    </td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fname)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Mobile)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Department)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
             <tr>
                 <td>
-                    @Html.ActionLink("Edit", "Create", new {  id=item.ID,item.Name,item.Fname,item.Email,item.Mobile,item.Description,item.DeptID  }, new {@class="btn btn-success"}) |
-                    @Html.ActionLink("Delete", "DeleteStd", new {  id=item.ID  },new {@class="btn btn-danger"})
+                    No Record Could be Found!
                 </td>
-
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Fname)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Mobile)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Department)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-
-               
             </tr>
         }
     </tbody>

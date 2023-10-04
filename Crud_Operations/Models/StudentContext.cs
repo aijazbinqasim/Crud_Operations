@@ -13,9 +13,6 @@ namespace Crud_Operations.Models
         }
 
         public DbSet<Student> tbl_Student { get; set; }
-        public DbSet<Departments> tbl_Departments
-        {
-            get; set;
-        }
+        public DbSet<Departments> tbl_Departments { get; set; }
     }
 }
