@@ -10,13 +10,13 @@ namespace Crud_Operations.Controllers
 {
     public class StudentController : Controller
     {
-        private readonly StudentContext _Db;
+        readonly StudentContext _Db;
 
         public StudentController(StudentContext db)
         {
             _Db = db;
         }
-    
+
         public IActionResult StudentList()
         {
             try
@@ -48,11 +48,9 @@ namespace Crud_Operations.Controllers
             }
         }
 
-
-
         public IActionResult Create(Student obj)
         {
-            loadDDL();
+            LoadDDL();
             return View(obj);
         }
 
@@ -74,41 +72,28 @@ namespace Crud_Operations.Controllers
                         await _Db.SaveChangesAsync();
                     }
                     return RedirectToAction("StudentList");
-
                 }
-                 return View();
-              
-
             }
-            catch (Exception ex)
-            {
-                return RedirectToAction("StudentList");
-            }
+            catch (Exception){ }
+            return View();
         }
-
 
         public async Task<IActionResult> DeleteStd(int id)
         {
             try
             {
                 var std = await _Db.tbl_Student.FindAsync(id);
-                if (std!=null)
+                if (std != null)
                 {
                     _Db.tbl_Student.Remove(std);
-                 await   _Db.SaveChangesAsync();
+                    await _Db.SaveChangesAsync();
                 }
-
-                return RedirectToAction("StudentList");
-
             }
-            catch(Exception ex)
-            {
-                return RedirectToAction("StudentList");
-            }
+            catch (Exception) { }
+            return RedirectToAction("StudentList");
         }
 
-
-        private void loadDDL()
+        void LoadDDL()
         {
             try
             {
@@ -118,10 +103,7 @@ namespace Crud_Operations.Controllers
 
                 ViewBag.DepList = depList;
             }
-            catch (Exception)
-            {
-
-            }
+            catch (Exception) { }
         }
     }
 }
