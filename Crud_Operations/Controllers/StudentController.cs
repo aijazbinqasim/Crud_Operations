@@ -55,6 +55,7 @@ namespace Crud_Operations.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddStudent(Student obj)
         {
             try
@@ -68,8 +69,12 @@ namespace Crud_Operations.Controllers
                     }
                     else
                     {
-                        _Db.Entry(obj).State = EntityState.Modified;
+                        _Db.tbl_Student.Entry(obj).State = EntityState.Modified;
+                        //_Db.tbl_Student.Update(obj);
                         await _Db.SaveChangesAsync();
+
+
+                       // await _Db.SaveChangesAsync();
                     }
                     return RedirectToAction("StudentList");
                 }
@@ -92,6 +97,9 @@ namespace Crud_Operations.Controllers
             catch (Exception) { }
             return RedirectToAction("StudentList");
         }
+
+
+
 
         void LoadDDL()
         {

@@ -49,7 +49,7 @@
                 <tr>
                     <td>
                         @Html.ActionLink("Edit", "Create", new {  id=item.ID,item.Name,item.Fname,item.Email,item.Mobile,item.Description,item.DeptID  }, new {@class="btn btn-success"}) |
-                        @Html.ActionLink("Delete", "DeleteStd", new {  id=item.ID  },new {@class="btn btn-danger"})
+                        @Html.ActionLink("Delete", "DeleteStd", new {  id=item.ID  },new {@class="btn btn-danger",onclick="return confirm('Do you realy want this record?')"})
                     </td>
 
                     <td>

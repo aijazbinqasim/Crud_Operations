@@ -29,7 +29,7 @@ namespace Crud_Operations.Models
         public string Mobile { get; set; }
 
         [Required(ErrorMessage = "Required")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
         [NotMapped]
         public string? Department { get; set; }
