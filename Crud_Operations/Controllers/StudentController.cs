@@ -66,20 +66,48 @@ namespace Crud_Operations.Controllers
                     {
                         _Db.tbl_Student.Add(obj);
                         await _Db.SaveChangesAsync();
+                        return RedirectToAction("StudentList");
                     }
-                    else
-                    {
-                        _Db.tbl_Student.Entry(obj).State = EntityState.Modified;
-                        //_Db.tbl_Student.Update(obj);
-                        await _Db.SaveChangesAsync();
+                }
+            }
 
+            catch (Exception) { }
+            return View();
+        }
 
-                       // await _Db.SaveChangesAsync();
-                    }
+        public IActionResult Edit(int? id)
+        {
+            Student? student = null;
+            try
+            {
+                if (id == null)
+                    return NotFound();
+
+                LoadDDL();
+                student = _Db.tbl_Student.FirstOrDefault(s => s.ID == id);
+            }
+
+            catch (Exception) { }
+            return View(student);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(Student student)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _Db.tbl_Student.Entry(student).State = EntityState.Modified;
+                    await _Db.SaveChangesAsync();
                     return RedirectToAction("StudentList");
                 }
             }
-            catch (Exception){ }
+            catch (Exception ex)
+            {
+
+            }
             return View();
         }
 
@@ -97,9 +125,6 @@ namespace Crud_Operations.Controllers
             catch (Exception) { }
             return RedirectToAction("StudentList");
         }
-
-
-
 
         void LoadDDL()
         {
